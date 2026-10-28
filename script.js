@@ -13,7 +13,7 @@ const produk = {
 
 let keranjang = {
     mango: 0,
-    lumpia: 0
+    lumpia: 0,
 };
 
 function rupiah(angka) {
