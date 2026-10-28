@@ -1,19 +1,19 @@
 const HARGA = 5000;
 
 const produk = {
-    cookies: {
-        nama: "Cookies",
-        emoji: "🍪"
+    mango: {
+        nama: "Mango Sago",
+        emoji: "🧃"
     },
-    semangka: {
-        nama: "Es Semangka Susu",
-        emoji: "🍉"
+    lumpia: {
+        nama: "Lumpia Kulit Tahu",
+        emoji: "🫔"
     }
 };
 
 let keranjang = {
-    cookies: 0,
-    semangka: 0
+    mango: 0,
+    lumpia: 0
 };
 
 function rupiah(angka) {
@@ -41,7 +41,7 @@ function ubahJumlah(id, perubahan) {
 }
 
 function hitungJumlah() {
-    return keranjang.cookies + keranjang.semangka;
+    return keranjang.mango + keranjang.lumpia;
 }
 
 function hitungTotal() {
@@ -125,8 +125,8 @@ function resetKeranjang() {
     }
 
     keranjang = {
-        cookies: 0,
-        semangka: 0
+        mango: 0,
+        lumpia: 0
     };
 
     tampilkanKeranjang();
@@ -169,7 +169,7 @@ document.getElementById("form-pesan").addEventListener(
         }
 
         const pesan =
-            "HALO THE BAKE & BLEND CO! 🍪🍉\n\n" +
+            "HALO MANGO SAGO & LUMPIA KULIT TAHU! 🧃🫔\n\n" +
             "Saya ingin memesan:\n" +
             daftar.join("\n") + "\n\n" +
             "Total: " + rupiah(hitungTotal()) + "\n\n" +
