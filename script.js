@@ -1,70 +1,193 @@
-let keranjang = [];
+const HARGA = 5000;
 
-function tambahKeKeranjang(namaMenu, hargaMenu) {
-    let itemDitemukan = keranjang.find(item => item.nama === namaMenu);
-    
-    if (itemDitemukan) {
-        itemDitemukan.jumlah += 1;
-    } else {
-        keranjang.push({ nama: namaMenu, harga: hargaMenu, jumlah: 1 });
+const produk = {
+    cookies: {
+        nama: "Mango Sago",
+        emoji: "🥭"
+    },
+    semangka: {
+        nama: "Lumpia Kulit Tahu",
+        emoji: "🫔"
     }
-    
-    updateTampilanKeranjang();
+};
+
+let keranjang = {
+    mangga: 0,
+    semangka: 0
+};
+
+function rupiah(angka) {
+    return "Rp" + angka.toLocaleString("id-ID");
 }
 
-function updateTampilanKeranjang() {
-    let containerKeranjang = document.getElementById("cart-items");
-    
-    if (keranjang.length === 0) {
-        containerKeranjang.innerHTML = "Keranjang masih kosong.";
+function tambahPesanan(id) {
+    if (keranjang[id] >= 99) {
+        alert("Maksimal pemesanan 99 produk per menu.");
         return;
     }
-    
-    let htmlContent = "";
-    let totalHarga = 0;
-    
-    keranjang.forEach(item => {
-        let subtotal = item.harga * item.jumlah;
-        totalHarga += subtotal;
-        htmlContent += `<div>${item.nama} (${item.jumlah}x) - Rp${subtotal.toLocaleString('id-ID')}</div>`;
-    });
-    
-    htmlContent += `<hr><strong>Total: Rp${totalHarga.toLocaleString('id-ID')}</strong>`;
-    containerKeranjang.innerHTML = htmlContent;
+
+    keranjang[id]++;
+    tampilkanKeranjang();
+}
+
+function ubahJumlah(id, perubahan) {
+    keranjang[id] += perubahan;
+
+    if (keranjang[id] < 0) {
+        keranjang[id] = 0;
+    }
+
+    tampilkanKeranjang();
+}
+
+function hitungJumlah() {
+    return keranjang.mangga + keranjang.lumpia;
+}
+
+function hitungTotal() {
+    return hitungJumlah() * HARGA;
+}
+
+function tampilkanKeranjang() {
+    const tempat = document.getElementById("keranjang");
+    let html = "";
+
+    for (const id in keranjang) {
+        const jumlah = keranjang[id];
+
+        if (jumlah > 0) {
+            html += `
+                <div class="item">
+                    <strong>
+                        ${produk[id].emoji} ${produk[id].nama}
+                    </strong>
+                    <br>
+                    Harga: ${rupiah(HARGA)}
+                    <br>
+                    Jumlah:
+                    <button type="button"
+                        onclick="ubahJumlah('${id}', -1)">−</button>
+
+                    ${jumlah}
+
+                    <button type="button"
+                        onclick="ubahJumlah('${id}', 1)">+</button>
+
+                    <br>
+                    Subtotal: ${rupiah(jumlah * HARGA)}
+                    <br>
+                    <button type="button"
+                        class="tombol-hapus"
+                        onclick="hapusProduk('${id}')">
+                        Hapus Produk
+                    </button>
+                </div>
+            `;
+        }
+    }
+
+    if (hitungJumlah() === 0) {
+        tempat.innerHTML = "<p>Keranjang masih kosong.</p>";
+        return;
+    }
+
+    html += `
+        <div class="total">
+            Total: ${rupiah(hitungTotal())}
+            <br>
+            <small style="font-size:14px">
+                ${hitungJumlah()} produk
+            </small>
+        </div>
+
+        <button type="button"
+            onclick="location.href='#checkout'">
+            Lanjut Checkout →
+        </button>
+    `;
+
+    tempat.innerHTML = html;
+}
+
+function hapusProduk(id) {
+    keranjang[id] = 0;
+    tampilkanKeranjang();
 }
 
 function resetKeranjang() {
-    keranjang = [];
-    updateTampilanKeranjang();
-}
-
-function kirimWhatsApp(event) {
-    event.preventDefault();
-    
-    let nama = document.getElementById("nama").value;
-    let kelas = document.getElementById("kelas").value;
-    let noWaInput = document.getElementById("wa").value;
-    let catatan = document.getElementById("catatan").value;
-    
-    if (keranjang.length === 0) {
-        alert("Keranjang masih kosong! Silakan pilih menu terlebih dahulu.");
+    if (hitungJumlah() === 0) {
+        alert("Keranjang sudah kosong!");
         return;
     }
-    
-    let pesan = `Halo, saya ingin memesan:\n\nNama: ${nama}\nKelas: ${kelas}\n\n*Pesanan:*`;
-    let totalHarga = 0;
-    
-    keranjang.forEach(item => {
-        let subtotal = item.harga * item.jumlah;
-        totalHarga += subtotal;
-        pesan += `\n- ${item.nama} (${item.jumlah}x) : Rp${subtotal.toLocaleString('id-ID')}`;
-    });
-    
-    pesan += `\n\n*Total Pembayaran: Rp${totalHarga.toLocaleString('id-ID')}*`;
-    if (catatan) {
-        pesan += `\nCatatan: ${catatan}`;
+
+    if (!confirm("Yakin ingin menghapus semua pesanan?")) {
+        return;
     }
-    
-    let urlWhatsApp = `https://wa.me/${noWaInput}?text=${encodeURIComponent(pesan)}`;
-    window.open(urlWhatsApp, '_blank');
+
+    keranjang = {
+        mangga: 0,
+        lumpia: 0
+    };
+
+    tampilkanKeranjang();
+    alert("Semua pesanan berhasil dikosongkan!");
 }
+
+document.getElementById("form-pesan").addEventListener(
+    "submit",
+    function(event) {
+        event.preventDefault();
+
+        if (hitungJumlah() === 0) {
+            alert("Pilih produk terlebih dahulu!");
+            location.href = "#menu";
+            return;
+        }
+
+        const nama =
+            document.getElementById("nama").value.trim();
+
+        const kelas =
+            document.getElementById("kelas").value.trim();
+
+        const wa =
+            document.getElementById("wa").value.trim();
+
+        const catatan =
+            document.getElementById("catatan").value.trim();
+
+        const daftar = [];
+
+        for (const id in keranjang) {
+            if (keranjang[id] > 0) {
+                daftar.push(
+                    produk[id].nama + " x " +
+                    keranjang[id] + " = " +
+                    rupiah(keranjang[id] * HARGA)
+                );
+            }
+        }
+
+        const pesan =
+            "HALO MANGO SAGO & LUMPIA KULIT TAHU! 🥭🫔\n\n" +
+            "Saya ingin memesan:\n" +
+            daftar.join("\n") + "\n\n" +
+            "Total: " + rupiah(hitungTotal()) + "\n\n" +
+            "Nama: " + nama + "\n" +
+            "Kelas: " + kelas + "\n" +
+            "WhatsApp pemesan: " + wa + "\n" +
+            "Catatan: " + (catatan || "-");
+
+        // Nomor WhatsApp penjual, tanpa tanda + atau spasi.
+        // Ganti jika nomor penjual berbeda.
+        const nomorPenjual = "6285850386383";
+
+        const url =
+            "https://wa.me/" + nomorPenjual +
+            "?text=" + encodeURIComponent(pesan);
+
+        window.open(url, "_blank");
+    }
+);
+
+tampilkanKeranjang();
