@@ -3,141 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mango Sago & Lumpia Kulit Tahu | Pemesanan Snack</title>
-
-    <!-- Menghubungkan file CSS -->
+    <title>Mango & Lumpia Corner</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Menghubungkan file JavaScript -->
-    <script src="script.js" defer></script>
 </head>
 <body>
 
-<header>
-    <h1>🧃 Mango Sago & Lumpia Kulit Tahu 🫔</h1>
-    <p>Segarnya Buah, Nikmatnya cookies!</p>
-</header>
+    <!-- Navigasi -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="active">Beranda</a>
+            <a href="#menu">Menu</a>
+            <a href="#keranjang">Keranjang</a>
+            <a href="#pesan">Checkout</a>
+        </nav>
+    </header>
 
-<nav>
-    <a href="#home">Beranda</a>
-    <a href="#menu">Menu</a>
-    <a href="#keranjang-section">Keranjang</a>
-    <a href="#checkout">Checkout</a>
-</nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Fresh Mango & Crispy Snack!</h1>
+        <p>Nikmati kesegaran buah mangga pilihan dan gurihnya lumpia kulit tahu dalam setiap gigitan.<br>Enak, segar, dan ramah di kantong!</p>
+        <a href="#menu" class="btn-pesan">Pesan Sekarang</a>
+    </section>
 
-<div class="hero" id="home">
-    <h2>Fresh Drink, Fresh Mood!</h2>
-    <p>
-        Nikmati kesegaran buah dan susu dalam setiap gelas
-        dan kelezatan cookies.
-        <br>
-        Enak, segar, dan ramah di kantong!
-    </p>
-    <button type="button" onclick="location.href='#menu'">
-        Pesan Sekarang
-    </button>
-</div>
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2>🥭 Menu Spesial Kami</h2>
+        
+        <div class="menu-container">
+            <!-- Item 1 -->
+            <div class="menu-card">
+                <div class="menu-img">🥭</div>
+                <h3>Mango Sago Creamy</h3>
+                <p>Perpaduan buah mangga manis, sagu mutiara, dan kuah creamy yang segar.</p>
+                <div class="price">Rp15.000</div>
+                <button class="btn-tambah" onclick="tambahKeKeranjang('Mango Sago Creamy', 15000)">+ Tambah ke Keranjang</button>
+            </div>
 
-<section id="menu">
-    <h2 class="judul">Menu Dessert</h2>
-
-    <div class="menu">
-        <div class="produk">
-            <div class="gambar">🧃</div>
-            <h3>Mango Sago</h3>
-            <p>Rasa manis mangga pilihan dengan susu creamy yang bikin nagih.</p>
-            <div class="harga">Rp8.000</div>
-            <button type="button" onclick="tambahPesanan('cookies')">
-                + Tambah ke Keranjang
-            </button>
+            <!-- Item 2 -->
+            <div class="menu-card">
+                <div class="menu-img">🥟</div>
+                <h3>Lumpia Kulit Tahu</h3>
+                <p>Lumpia renyah berisi daging pilihan dengan balutan kulit tahu berkualitas.</p>
+                <div class="price">Rp12.000</div>
+                <button class="btn-tambah" onclick="tambahKeKeranjang('Lumpia Kulit Tahu', 12000)">+ Tambah ke Keranjang</button>
+            </div>
         </div>
+    </section>
 
-        <div class="produk">
-            <div class="gambar">🫔</div>
-            <h3>Lumpia Kulit Tahu</h3>
-            <p>Renyah diluar, lembut di dalam.</p>
-            <div class="harga">Rp6.000</div>
-            <button type="button" onclick="tambahPesanan('semangka')">
-                + Tambah ke Keranjang
-            </button>
+    <!-- Keranjang Section -->
+    <section id="keranjang" class="cart-section">
+        <h2>🛒 Keranjang Pesanan</h2>
+        <div class="cart-box">
+            <div id="cart-items" class="cart-items-text">Keranjang masih kosong.</div>
         </div>
-    </div>
-</section>
+        <button class="btn-reset" onclick="resetKeranjang()">🔄 Reset Semua Pesanan</button>
+    </section>
 
-<section id="keranjang-section">
-    <h2 class="judul">🛒 Keranjang Pesanan</h2>
+    <!-- Tentang Section -->
+    <section class="about-section">
+        <h2>Tentang Mango & Lumpia Corner</h2>
+        <p>Mango & Lumpia Corner menyediakan hidangan segar berbahan dasar buah mangga pilihan serta camilan gurih yang cocok dinikmati saat cuaca panas maupun santai.<br><br><strong>Harga hemat, kesegaran nikmat!</strong></p>
+    </section>
 
-    <div id="keranjang">
-        <p>Keranjang masih kosong.</p>
-    </div>
+    <!-- Form Pemesanan / Checkout -->
+    <section id="pesan" class="form-section">
+        <h2>📝 Form Pemesanan</h2>
+        <form id="orderForm" onsubmit="kirimWhatsApp(event)">
+            <label>Nama Pemesan</label>
+            <input type="text" id="nama" placeholder="Masukkan nama kamu" required>
 
-    <div class="reset-container">
-        <button
-            type="button"
-            class="tombol-reset"
-            onclick="resetKeranjang()">
-            🔄 Reset Semua Pesanan
-        </button>
-    </div>
-</section>
+            <label>Kelas</label>
+            <input type="text" id="kelas" placeholder="Contoh: XII RPL 2" required>
 
-<section class="info">
-    <h2>Tentang Dessert kita</h2>
-    <p>
-        Mango Sago adalah dessert kekinian yang memiliki rasa manis, segar, dan creamy,
-        cocok dinikmati sebagai hidangan penutup atau camilan.
-        Sedangkan Lumpia Kulit Tahu adalah camilan gurih yang teksturnya 
-        renyah di luar dan lembut di dalam, cocok dinikmati kapan saja.
-        Kedua produk ini dijual sebagai pilihan camilan.
-        Kedua produk ini dijual sebagai pilihan camilan manis dan gurih 
-        dengan rasa yang lezat serta harga yang terjangkau.
-        <br>
-        <strong>Harga hemat, kesegaran nikmat!</strong>
-    </p>
-</section>
+            <label>Nomor WhatsApp Pemesan</label>
+            <input type="text" id="wa" value="085850386383[span_2](start_span)"[span_2](end_span) required>
 
-<section id="checkout">
-    <h2 class="judul">📝 Form Pemesanan</h2>
+            <label>Catatan (opsional)</label>
+            <textarea id="catatan" placeholder="Catatan pesanan"></textarea>
 
-    <form class="form" id="form-pesan">
-        <label for="nama">Nama Pemesan</label>
-        <input
-            type="text"
-            id="nama"
-            placeholder="Masukkan nama kamu"
-            required>
+            <button type="submit" class="btn-konfirmasi">Konfirmasi Pesanan via WhatsApp</button>
+        </form>
+    </section>
 
-        <label for="kelas">Kelas</label>
-        <input
-            type="text"
-            id="kelas"
-            placeholder="Contoh: XII RPL 2"
-            required>
+    <!-- Footer -->
+    <footer>
+        <p>🥭 Mango & Lumpia Corner 🥟</p>
+        <p>Segarnya mangga, gurihnya lumpia!</p>
+        <p>© 2026 Mango & Lumpia Corner | Produk Kewirausahaan Kelas</p>
+    </footer>
 
-        <label for="wa">Nomor WhatsApp Pemesan</label>
-        <input
-            type="tel"
-            id="wa"
-            placeholder="08xxxxxxxxxx"
-            required>
-
-        <label for="catatan">Catatan (opsional)</label>
-        <textarea
-            id="catatan"
-            rows="3"
-            placeholder="Catatan pesanan"></textarea>
-
-        <button type="submit">
-            Konfirmasi Pesanan via WhatsApp
-        </button>
-    </form>
-</section>
-
-<footer>
-    <h3>🧃 Mango Sago & Lumpia Kulit Tahu 🫔</h3>
-    <p>Segar Buahnya, Gurih snacknya!</p>
-    <p>© 2026 Mango Sago & Lumpia Kulit Tahu | Produk Kewirausahaan Kelas</p>
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
