@@ -1,232 +1,223 @@
-* {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fcf8f2;
+    color: #4a3525;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-body {
-    background: #fffaf0;
-    color: #333;
-}
-
+/* Navigasi */
 header {
-    background: #ffb84d;
-    color: #713d16;
-    padding: 22px 15px;
-    text-align: center;
+    background-color: #f7ede2;
+    border-bottom: 1px solid #e6d5c3;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-header h1 {
-    font-size: 30px;
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
 }
 
-header p {
-    margin-top: 8px;
-}
-
-nav {
-    background: #713d16;
-    padding: 14px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
+.navbar a {
     text-decoration: none;
-    margin: 0 10px;
+    color: #4a3525;
     font-weight: bold;
     font-size: 14px;
 }
 
-nav a:hover {
-    color: #ffcc80;
+.navbar a.active {
+    color: #d97706;
 }
 
+/* Hero Section */
 .hero {
-    padding: 50px 20px;
     text-align: center;
-    background: #fff0cc;
+    padding: 40px 20px;
+    background-color: #faedcd;
 }
 
-.hero h2 {
-    color: #713d16;
-    font-size: 30px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    line-height: 1.8;
-}
-
-section {
-    padding: 35px 6%;
-}
-
-.judul {
-    text-align: center;
-    color: #713d16;
-    margin-bottom: 25px;
-}
-
-button {
-    padding: 11px 15px;
-    border: none;
-    border-radius: 8px;
-    background: #e98524;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    opacity: 0.85;
-}
-
-.hero button {
-    margin-top: 20px;
-}
-
-.menu {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
-    max-width: 800px;
-    margin: auto;
-}
-
-.produk {
-    background: white;
-    border-radius: 15px;
-    padding: 25px 18px;
-    text-align: center;
-    box-shadow: 0 3px 12px #00000012;
-}
-
-.gambar {
-    font-size: 85px;
-    margin-bottom: 15px;
-}
-
-.produk h3 {
+.hero h1 {
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
-.produk p {
-    color: #666;
-    line-height: 1.6;
+.hero p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b533f;
+    margin-bottom: 20px;
 }
 
-.harga {
-    color: #d76a13;
+.btn-pesan {
+    display: inline-block;
+    background-color: #d97706;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
     font-weight: bold;
-    font-size: 22px;
-    margin: 15px 0;
+    font-size: 14px;
 }
 
-.reset-container {
+/* Menu Section */
+.menu-section {
+    padding: 30px 20px;
     text-align: center;
-    margin-top: 15px;
 }
 
-.info {
-    background: #ffedc7;
-    text-align: center;
-    line-height: 1.8;
+.menu-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
-#keranjang {
-    max-width: 700px;
-    margin: auto;
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.menu-card {
     background: white;
-    padding: 20px;
+    border: 1px solid #e6d5c3;
     border-radius: 12px;
-    box-shadow: 0 3px 12px #00000010;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.item {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-    line-height: 2;
+.menu-img {
+    font-size: 50px;
+    margin-bottom: 10px;
 }
 
-.item button {
-    padding: 6px 12px;
-    margin: 0 3px;
+.menu-card h3 {
+    margin: 5px 0;
+    font-size: 18px;
 }
 
-.total {
-    color: #713d16;
-    font-size: 22px;
+.menu-card p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 18px;
     font-weight: bold;
-    margin: 22px 0;
+    color: #d97706;
+    margin-bottom: 15px;
 }
 
-.tombol-reset {
-    background: #dc3545;
-}
-
-.tombol-hapus {
-    background: #777;
-}
-
-.form {
-    max-width: 500px;
-    margin: auto;
-}
-
-.form label {
-    display: block;
+.btn-tambah {
+    background-color: #d97706;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
     font-weight: bold;
-    margin-top: 16px;
-}
-
-.form input,
-.form textarea {
+    cursor: pointer;
     width: 100%;
-    padding: 12px;
-    margin-top: 7px;
-    border: 1px solid #ccc;
+}
+
+/* Keranjang Section */
+.cart-section {
+    padding: 20px;
+    text-align: center;
+    background-color: #faedcd;
+}
+
+.cart-box {
+    background: white;
+    border: 1px solid #e6d5c3;
     border-radius: 8px;
-    font-size: 15px;
+    padding: 15px;
+    max-width: 400px;
+    margin: 0 auto 15px auto;
+    min-height: 40px;
+    text-align: left;
+    font-size: 14px;
 }
 
-.form textarea {
-    resize: vertical;
+.btn-reset {
+    background-color: #b91c1c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.form button {
+/* Tentang Section */
+.about-section {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #f7ede2;
+}
+
+.about-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.about-section p {
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Form Section */
+.form-section {
+    padding: 30px 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-section h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-section input, .form-section textarea {
     width: 100%;
-    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 13px;
 }
 
+.btn-konfirmasi {
+    background-color: #d97706;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Footer */
 footer {
-    background: #713d16;
+    background-color: #6b533f;
     color: white;
     text-align: center;
-    padding: 25px;
-    line-height: 1.8;
-}
-
-@media (max-width: 600px) {
-    .menu {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h2 {
-        font-size: 25px;
-    }
-
-    header h1 {
-        font-size: 25px;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
-
-    .produk button {
-        max-width: 100%;
-    }
+    padding: 20px;
+    font-size: 12px;
 }
