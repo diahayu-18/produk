@@ -158,7 +158,7 @@ Terima kasih!`;
 
     // Kirim ke WhatsApp penjual
     const linkWhatsApp =
-        `https://wa.me/${085850386383}?text=${encodeURIComponent(pesan)}`;
+        `https://wa.me/${6285850386383}?text=${encodeURIComponent(pesan)}`;
 
     // Buka WhatsApp
     window.location.href = linkWhatsApp;
