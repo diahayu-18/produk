@@ -4,7 +4,7 @@
 
 // Ganti dengan nomor WhatsApp penjual.
 // Gunakan kode negara 62, tanpa tanda + atau angka 0 di depan.
-const nomorPenjual = "6285850386383";
+const nomorPenjual = "6285710636989";
 
 // ===================================
 // DATA PRODUK
@@ -158,7 +158,7 @@ Terima kasih!`;
 
     // Kirim ke WhatsApp penjual
     const linkWhatsApp =
-        `https://wa.me/${6285850386383}?text=${encodeURIComponent(pesan)}`;
+        `https://wa.me/${6285710636989}?text=${encodeURIComponent(pesan)}`;
 
     // Buka WhatsApp
     window.location.href = linkWhatsApp;
